@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>OUTLETS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+    #intro {
+    min-height: 100vh;
+}
+
+    #intro {
+    background: url("https://wallpaperaccess.com/full/3353887.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover !important;
+}
+
+</style>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Food Outlet Rating System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/outlets}">Outlets</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="intro">
+    <div class="container" >
+        <br>
+        <div class="row p-1 mb-1 bg-dark text-white d-flex justify-content-around ">
+            <h1>Restaurants</h1>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href = "@{/outlets/new-restaurant}" class = "btn btn-warning btn-primary btn-lg mb-3">Add New Restaurant</a>
+            </div>
+        </div>
+
+        <table class="table table-striped table-dark table-bordered">
+            <thead class="table-dark">
+                <tr class="bg-success">
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                    <th>Hours</th>
+                    <th>City</th>
+                    <th>Previous Votes</th>
+                    <th>Last Vote</th>
+                    <th>Actions</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "restaurant: ${restaurants}">
+                    <td th:text = "${restaurant.name}"></td>
+                    <td th:text = "${restaurant.rating}"></td>
+                    <td th:text = "${restaurant.range}"></td>
+                    <td th:text = "${restaurant.hours}"></td>
+                    <td th:text = "${restaurant.city}"></td>
+                    <td th:text = "${restaurant.given_vote}"></td>
+                    <td th:text = "${restaurant.current_vote}"></td>
+
+                    <td>
+                        <a th:href = "@{/outlets/edit/{id}(id=${restaurant.id})}"
+                        class="btn btn-primary">UPDATE</a>
+                        <a th:href = "@{/outlets/{id}(id=${restaurant.id})}"
+                           class="btn btn-danger">DELETE</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <div class="row p-1 mb-1 bg-dark text-white d-flex justify-content-around">
+            <h1>Bistro</h1>
+        </div>
+        <br>
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href = "@{/outlets/new-bistro}" class = "btn btn-warning btn-primary btn-lg mb-3">Add New Bistro</a>
+            </div>
+        </div>
+
+
+        <table class="table table-striped table-dark table-bordered">
+            <thead class="table-dark">
+            <tr class="bg-success">
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Price</th>
+                <th>Hours</th>
+                <th>City</th>
+                <th>Previous Votes</th>
+                <th>Last Vote</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "bistro: ${bistros}">
+                <td th:text = "${bistro.name}"></td>
+                <td th:text = "${bistro.rating}"></td>
+                <td th:text = "${bistro.range}"></td>
+                <td th:text = "${bistro.hours}"></td>
+                <td th:text = "${bistro.city}"></td>
+                <td th:text = "${bistro.given_vote}"></td>
+                <td th:text = "${bistro.current_vote}"></td>
+                <td>
+                    <a th:href = "@{/bistros/edit/{id}(id=${bistro.id})}"
+                       class="btn btn-primary">UPDATE</a>
+                    <a th:href = "@{/bistros/{id}(id=${bistro.id})}"
+                       class="btn btn-danger">DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <div class="row p-1 mb-1 bg-dark text-white d-flex justify-content-around">
+            <h1>Take Away</h1>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href = "@{/outlets/new-take-away}" class = "btn btn-warning btn-primary btn-lg mb-3">Add Take Away</a>
+            </div>
+        </div>
+
+        <table class="table table-striped table-dark table-bordered">
+            <thead class="table-dark">
+            <tr class="bg-success">
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Price</th>
+                <th>Hours</th>
+                <th>City</th>
+                <th>Previous Votes</th>
+                <th>Last Vote</th>
+                <th>Actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "takeaway: ${takeaways}">
+                <td th:text = "${takeaway.name}"></td>
+                <td th:text = "${takeaway.rating}"></td>
+                <td th:text = "${takeaway.range}"></td>
+                <td th:text = "${takeaway.hours}"></td>
+                <td th:text = "${takeaway.city}"></td>
+                <td th:text = "${takeaway.given_vote}"></td>
+                <td th:text = "${takeaway.current_vote}"></td>
+                <td>
+                    <a th:href = "@{/takeAways/edit/{id}(id=${takeaway.id})}"
+                       class="btn btn-primary">UPDATE</a>
+                    <a th:href = "@{/takeAways/{id}(id=${takeaway.id})}"
+                       class="btn btn-danger">DELETE</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>
